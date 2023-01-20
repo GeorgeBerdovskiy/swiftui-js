@@ -3,7 +3,7 @@
 </p>
 
 # SwiftJS
-Simple JavaScript framework built to replicate the SwiftUI framework syntax for user interface development.
+Simple JavaScript framework built to replicate SwiftUI syntax for user interface development.
 
 ## Future Goals
 - Recreate as many commonly used SwiftUI views as possible
