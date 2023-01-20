@@ -1,8 +1,8 @@
 <p align="center">
-  <img width="300px" src="README/SJS.png">
+  <img width="300px" src="README/SwiftUIJS.png">
 </p>
 
-# SwiftJS
+# SwiftUI JS
 Simple JavaScript framework built to replicate SwiftUI syntax for user interface development.
 
 ## Future Goals
@@ -11,4 +11,4 @@ Simple JavaScript framework built to replicate SwiftUI syntax for user interface
 - Match the SwiftUI syntax as closely as possible using Babel
 
 ## Contributions
-I'm totally open to contributions, especially since this is my first JavaScript framework! Feel free reach out if you're interested in working on SwiftJS.
+I'm totally open to contributions, especially since this is my first JavaScript framework! Feel free reach out if you're interested in working on swiftui-js.

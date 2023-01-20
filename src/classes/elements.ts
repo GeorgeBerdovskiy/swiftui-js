@@ -1,13 +1,23 @@
-class TextObject {
-    value: string;
-    object: HTMLElement;
+class UIView {
+	object: HTMLElement;
+	children: Array<UIView>;
 
+	constructor(object: HTMLElement, children: Array<UIView>) {
+		this.object = object;
+		this.children = children;
+	}
+
+	render() {
+		return this.object;
+	}
+}
+
+class TextObject extends UIView {
 	constructor(value: string) {
-		this.value = value;
+		let object = document.createElement('p');
+		object.innerText = value;
 
-		// Create DOM element
-		this.object = document.createElement('p');
-		this.object.innerText = value;
+		super(object, []);
 	}
 
 	padding(value: Number) {
@@ -21,10 +31,19 @@ class TextObject {
 		this.object.style.fontFamily = value;
 		return this;
 	}
+}
 
-	render() {
-		return this.object;
+class HStackObject extends UIView {
+	constructor(children: Array<UIView>) {
+		let object = document.createElement('div');
+		object.className = "hstack";
+		
+		super(object, children);
 	}
 }
 
-export default TextObject;
+export {
+	UIView,
+	TextObject,
+	HStackObject
+}
