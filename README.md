@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="300px" src="README/SwiftJS.png">
+  <img width="300px" src="README/SJS.png">
 </p>
 
 # SwiftJS
