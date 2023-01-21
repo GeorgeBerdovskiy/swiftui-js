@@ -1,6 +1,8 @@
 import { Text, HStack } from "./functions/elements"
 import { UIView } from "./classes/elements"
 
+import "./test.swift";
+
 import './assets/style.css'
 
 let base = document.querySelector<HTMLDivElement>('#base')!
@@ -31,5 +33,8 @@ function renderView(parent: HTMLElement, elements: Array<UIView>) {
 		}
 	}
 }
+
+let n = "Hello World";
+console.log(n);
 
 renderView(base, elements);

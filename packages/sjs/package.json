@@ -1,0 +1,12 @@
+{
+  "name": "grandmas-own-jsx",
+  "version": "1.0.0",
+  "description": "A custom JSX transpiler that uses 👵 because reasons.",
+  "main": "index.js",
+  "author": {
+    "name": "Stephen Cook",
+    "email": "stephen@stephencookdev.co.uk"
+  },
+  "license": "ISC",
+  "dependencies": {}
+}
