@@ -12420,7 +12420,12 @@ function babel7CompatTokens(tokens, input) {
 }
 class StatementParser extends ExpressionParser {
   parseTopLevel(file, program) {
+    console.log("CUSTOM PARSER - parseTopLevel - Begun")
+
     file.program = this.parseProgram(program);
+
+    console.log("Program parse successful")
+
     file.comments = this.state.comments;
     if (this.options.tokens) {
       file.tokens = babel7CompatTokens(this.tokens, this.input);
@@ -12431,6 +12436,9 @@ class StatementParser extends ExpressionParser {
     program.sourceType = sourceType;
     program.interpreter = this.parseInterpreterDirective();
     this.parseBlockBody(program, true, true, end);
+
+    console.log("CUSTOM PARSER - parseProgram - Done with parseBlockBody")
+
     if (this.inModule && !this.options.allowUndeclaredExports && this.scope.undefinedExports.size > 0) {
       for (const [localName, at] of Array.from(this.scope.undefinedExports)) {
         this.raise(Errors.ModuleExportUndefined, {
@@ -12516,6 +12524,7 @@ class StatementParser extends ExpressionParser {
     }
   }
   parseModuleItem() {
+    console.log("Preparing to return parseStatementLike (curently sindie parseModuleItem")
     return this.parseStatementLike(ParseStatementFlag.AllowImportExport | ParseStatementFlag.AllowDeclaration | ParseStatementFlag.AllowFunctionDeclaration | ParseStatementFlag.AllowLabeledFunction);
   }
   parseStatementListItem() {
@@ -12532,6 +12541,8 @@ class StatementParser extends ExpressionParser {
     if (this.match(26)) {
       decorators = this.parseDecorators(true);
     }
+
+    console.log("Did NOT match 26 (whatever that measn), preparing to parseStatementContent")
     return this.parseStatementContent(flags, decorators);
   }
   parseStatementContent(flags, decorators) {
@@ -12540,6 +12551,8 @@ class StatementParser extends ExpressionParser {
     const allowDeclaration = !!(flags & ParseStatementFlag.AllowDeclaration);
     const allowFunctionDeclaration = !!(flags & ParseStatementFlag.AllowFunctionDeclaration);
     const topLevel = flags & ParseStatementFlag.AllowImportExport;
+
+    console.log("Inside parseStatementContent and preparing to switch")
     switch (starttype) {
       case 60:
         return this.parseBreakContinueStatement(node, true);
@@ -13096,14 +13109,31 @@ class StatementParser extends ExpressionParser {
   parseBlockBody(node, allowDirectives, topLevel, end, afterBlockParse) {
     const body = node.body = [];
     const directives = node.directives = [];
+
+    console.log("Preparing to parse block body (parseBlockBody)")
     this.parseBlockOrModuleBlockBody(body, allowDirectives ? directives : undefined, topLevel, end, afterBlockParse);
   }
   parseBlockOrModuleBlockBody(body, directives, topLevel, end, afterBlockParse) {
     const oldStrict = this.state.strict;
     let hasStrictModeDirective = false;
     let parsedNonDirective = false;
+
+    console.log("Preparing to enter loop in parseBlockOrModuleBlockBody")
     while (!this.match(end)) {
-      const stmt = topLevel ? this.parseModuleItem() : this.parseStatementListItem();
+      console.log("Preparing to parse module item")
+
+      //const stmt = topLevel ? this.parseModuleItem() : this.parseStatementListItem();
+
+      if (topLevel) {
+        console.log("--- top level, executing this.parseModuleItem() ")
+        this.parseModuleItem();
+      } else {
+        console.log("--- top level, executing this.parseStatementListItem() ")
+        this.parseStatementListItem()
+      }
+
+      console.log("Parsed module item")
+
       if (directives && !parsedNonDirective) {
         if (this.isValidDirective(stmt)) {
           const directive = this.stmtToDirective(stmt);
@@ -13119,6 +13149,9 @@ class StatementParser extends ExpressionParser {
       }
       body.push(stmt);
     }
+
+    console.log("Done with loop")
+
     if (afterBlockParse) {
       afterBlockParse.call(this, hasStrictModeDirective);
     }
@@ -13126,6 +13159,7 @@ class StatementParser extends ExpressionParser {
       this.setStrict(false);
     }
     this.next();
+    console.log("Next called")
   }
   parseFor(node, init) {
     node.init = init;
@@ -14218,12 +14252,26 @@ class Parser extends StatementParser {
     return ScopeHandler;
   }
   parse() {
+    console.log("CUSTOM PARSER - Parse called.")
+
     this.enterInitialScopes();
+
+    console.log("CUSTOM PARSER - Initial scopes successful")
+
     const file = this.startNode();
     const program = this.startNode();
+
+    console.log("CUSTOM PARSER - File and program nodes started")
+
     this.nextToken();
+
+    console.log("CUSTOM PARSER - Next token successful")
+
     file.errors = null;
     this.parseTopLevel(file, program);
+
+    console.log("CUSTOM PARSER - Parse top level done")
+
     file.errors = this.state.errors;
     return file;
   }

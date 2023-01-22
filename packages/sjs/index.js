@@ -8,7 +8,13 @@ export default function SwiftUIJS() {
         console.log(code)
         console.log(parser)
 
-        return parser.parse(code, opts);
+        try {
+            return parser.parse(code, opts);
+        } catch {
+            console.log("Parse failed")
+        }
+
+        return "//Nothing"
       },
     };
   }
