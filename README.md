@@ -1,5 +1,9 @@
 <p align="center">
-  <img width="300px" src="README/SwiftUIJS.png">
+  <picture >
+    <source media="(prefers-color-scheme: dark)" srcset="README/DarkSwiftUIJS.png">
+    <source media="(prefers-color-scheme: light)" srcset="README/SwiftUIJS.png">
+    <img alt="SwiftUI JS Logo" src="README/SwiftUIJS.png" width="300px">
+  </picture>
 </p>
 
 # SwiftUI JS
