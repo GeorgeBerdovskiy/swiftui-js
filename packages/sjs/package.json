@@ -1,12 +1,11 @@
 {
-  "name": "grandmas-own-jsx",
-  "version": "1.0.0",
-  "description": "A custom JSX transpiler that uses 👵 because reasons.",
+  "name": "sjs",
+  "version": "0.0.1",
+  "description": "Custom SwiftUI to JavaScript transpiler.",
   "main": "index.js",
   "author": {
-    "name": "Stephen Cook",
-    "email": "stephen@stephencookdev.co.uk"
+    "name": "George Berdovskiy"
   },
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {}
 }
