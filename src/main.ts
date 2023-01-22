@@ -5,6 +5,8 @@ import "./test.swift";
 
 import './assets/style.css'
 
+// Import from Swift file
+
 let base = document.querySelector<HTMLDivElement>('#base')!
 
 let elements = [

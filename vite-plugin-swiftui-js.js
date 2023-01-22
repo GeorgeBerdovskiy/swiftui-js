@@ -1,5 +1,5 @@
 import * as babel from '@babel/core'
-import sjs from './packages/sjs'
+import sjs from './packages/parser'
 
 const fileRegex = /\.(swift)$/
 
@@ -13,19 +13,12 @@ export default function swiftUIJS() {
         console.log("Transforming Swift (UI) source file...")
         
 
-        const result = babel.transformSync(src, {
-            babelrc: false,
-            ast: true,
-            plugins: [sjs],
-            sourceMaps: true,
-            sourceFileName: id,
-            configFile: false,
-          });
+        const result = sjs.parse(src);
 
           console.log("Result of transformation - ")
-          console.log(result.code)
+          console.log(result)
 
-          return "console.log('Transormation successful.')";
+          return result;
       }
     },
   }
