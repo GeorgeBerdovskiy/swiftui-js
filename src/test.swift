@@ -1,3 +1,16 @@
-// This is only here to test the Vite plugin for now
+import HStack from "./functions/elements.ts"
 
-console.log("Hello world!")
+function Text(content) {
+    console.log(content)
+}
+
+HStack {
+    Text("Hellow"),
+    Text("World!!")
+}
+
+let elements = [HStack]
+
+export default {
+    elements
+};
