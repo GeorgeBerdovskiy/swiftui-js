@@ -2,7 +2,7 @@
   "name": "sjs",
   "version": "0.0.1",
   "description": "Custom SwiftUI to JavaScript transpiler.",
-  "main": "index.js",
+  "main": "index.ts",
   "author": {
     "name": "George Berdovskiy"
   },

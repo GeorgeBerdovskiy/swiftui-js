@@ -1,6 +1,17 @@
-.hstack {
-    background-color: aqua;
-
+.sjs-hstack {
     display: flex;
-    width: 100%;
+    flex-direction: row;
+}
+
+.sjs-vstack {
+    display: flex;
+    flex-direction: column;
+}
+
+.sjs-spacer {
+    flex-grow: 1;
+}
+
+.sjs-hstack p, .sjs-vstack p {
+    flex-grow: 0;
 }
